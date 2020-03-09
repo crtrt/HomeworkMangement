@@ -39,7 +39,7 @@ public class deleteServlet extends HttpServlet {
 
         StudentHomeworkJdbc.deleteHomework(ids);
 
-        out.print("<script>alert('Delete successfully!'); window.location='/StudentJSP/selectMy.jsp' </script>");
+        out.print("<script>alert('Delete successfully!'); window.location='/StudentJSP/subHomework.jsp' </script>");
 
     }
 }
