@@ -14,5 +14,14 @@
         <url-pattern>/testServletV1</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>testServletV2</servlet-name>
+        <servlet-class>com.java.code.class12.servlet.TestServletV2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testServletV2</servlet-name>
+        <url-pattern>/testServletV2</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
