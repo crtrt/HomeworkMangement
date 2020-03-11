@@ -18,6 +18,10 @@
 <%String username=request.getParameter("student_id");%>
 <%
     out.print("当前学号:"+username);
+    out.print("修改完成后需要勾选修改项，才能点击修改。");
+
+
+
 %>
 <a href="../index.jsp" style="color: #1e704d;float:right">返回首页</a>
 <a href="../StudentJSP/subHomework.jsp" style="color: #1e704d;float:right;margin-right: 10px">返回上一页</a>
@@ -31,11 +35,14 @@
         <td>作业标题</td>
         <td>作业内容</td>
         <td>创建时间</td>
+        <td>修改时间</td>
+        <td>操作</td>
     </tr>
     <%
 
         List<StudentHomework> list = StudentHomeworkJdbc.selectMy(Long.parseLong(request.getParameter("student_id")));
 //         List<StudentHomework> list = (List<StudentHomework>) request.getAttribute("list");
+        String title=request.getParameter("title");
 
         if(null == list || list.size() <= 0){
             out.print("None data.");
@@ -50,18 +57,21 @@
         <td><%=sh.getHomeworkTitle()%></td>
         <td><%=sh.getHomeworkContent()%></td>
         <td><%=sh.getCreateTime()%></td>
+        <td><%=sh.getUpdateTime()%></td>
+        <td><a href="update.jsp?id=<%=sh.getId()%>&stuId=<%=sh.getStudentId()%>&hmwId=<%=sh.getHomeworkId()%>&hmwTitle=<%=sh.getHomeworkTitle()%>&hmwContent=<%=sh.getHomeworkContent()%>">修改</a></td>
     </tr>
     <%
+
             }
         }
     %>
 </table>
-
     <div id="control">
-        <input style="margin-top: 20px" class="btn" type="button" value="确认删除" type="submit" onclick="form1.action='../deleteServlet';form1.submit();"/>
+        <input style="margin-top: 20px;margin-left: 550px" class="btn" type="button" value="确认删除" onclick="form1.action='../deleteServlet';form1.submit();"/>
+
+
     </div>
 </form>
-
 
 </body>
 </html>
@@ -99,8 +109,9 @@
         background-color: rgba(240, 255, 255, 0.5);
         border-radius: 6px;
         border: 0;
-        margin: auto 0 auto 550px;
+        float: left;
     }
+
 
     form p > * {
         display: inline-block;

@@ -218,6 +218,7 @@ public class StudentHomeworkJdbc {
                         sh.setHomeworkTitle(resultSet.getString("homework_title"));
                         sh.setHomeworkContent(resultSet.getString("homework_content"));
                         sh.setCreateTime(resultSet.getTimestamp("create_time"));
+                        sh.setUpdateTime(resultSet.getTimestamp("update_time"));
                         list.add(sh);
                     }
                 }
@@ -249,5 +250,24 @@ public class StudentHomeworkJdbc {
             return e.getMessage();
         }
         return "删除成功";
+    }
+    /*
+    修改自己已提交的作业
+     */
+    public static String updateHomework(StudentHomework sh) {
+        String url = "jdbc:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
+        String sqlString = "update s_student_homework set homework_title='"+sh.getHomeworkTitle()+"',homework_content='"+sh.getHomeworkContent()+"',update_time='"+sh.getUpdateTime()+"'where id='"+sh.getId()+ "'";
+        List<StudentHomework> list = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(url, "root", "123456")) {
+            try (Statement statement = connection.createStatement()) {
+                //插入
+                statement.executeUpdate(sqlString);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        return "修改成功";
     }
 }

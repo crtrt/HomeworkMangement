@@ -12,28 +12,29 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
-@WebServlet("/deleteServlet")
-public class deleteServlet extends HttpServlet {
+
+@WebServlet("/updateServlet")
+public class updateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        StudentHomework sh = new StudentHomework();
+        //获取当前时间
+        Timestamp now = new Timestamp(new Date().getTime());
         /**
          * 赋值
          */
-        String[] selectdelete = req.getParameterValues("chk");
+        sh.setId(Long.parseLong(req.getParameter("id")));
+        sh.setHomeworkTitle(req.getParameter("title"));
+        sh.setHomeworkContent(req.getParameter("content"));
+        sh.setUpdateTime(now);
+        StudentHomeworkJdbc.updateHomework(sh);
         PrintWriter out = resp.getWriter();
-        if(selectdelete!=null){
+        out.print("<script>alert('Submit successfully!'); window.location='/StudentJSP/subHomework.jsp' </script>");
 
-        String ids ="";
-        for(int i=0;i<selectdelete.length;i++){
-            ids += "'"+selectdelete[i]+"'";
-            if(i!=selectdelete.length-1) ids+=",";
-        }
-
-        StudentHomeworkJdbc.deleteHomework(ids);
-        out.print("<script>alert('Delete successfully!'); window.location='/StudentJSP/subHomework.jsp' </script>");
-    }else{
-            out.print("<script>alert('You should select one item at least!'); window.location='/StudentJSP/subHomework.jsp' </script>");
-        }
     }
+
+
 }
