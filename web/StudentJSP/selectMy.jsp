@@ -18,10 +18,6 @@
 <%String username=request.getParameter("student_id");%>
 <%
     out.print("当前学号:"+username);
-    out.print("修改完成后需要勾选修改项，才能点击修改。");
-
-
-
 %>
 <a href="../index.jsp" style="color: #1e704d;float:right">返回首页</a>
 <a href="../StudentJSP/subHomework.jsp" style="color: #1e704d;float:right;margin-right: 10px">返回上一页</a>
