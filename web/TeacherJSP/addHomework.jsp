@@ -1,6 +1,7 @@
 <%@ page import="com.java.code.class12.model.StudentHomework" %>
 <%@ page import="com.java.code.class12.jdbc.StudentHomeworkJdbc" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.java.code.class12.model.Homework" %><%--
   Created by IntelliJ IDEA.
   User: enovo
   Date: 2020/3/8
@@ -16,16 +17,16 @@
     <%@ include file="header.jsp" %>
     <div id="frame">
         <form action="../AddStudentHomeworkServlet" method="post" >
-                <p><label style="margin-top: 20px" class="label_input">作业标题</label><input style="margin-top: 20px" type="text" name="title" class="text_field"/></p>
+                <p><label style="margin-top: 8px" class="label_input">作业标题</label><input style="margin-top: 8px" type="text" name="title" class="text_field"/></p>
                 <p><label class="label_input">作业内容</label><input type="text" name="content" class="text_field"/></p>
                 <div id="control">
-                    <input type="submit" id="btn" value="确认" />
+                    <input type="submit" id="btn" value="确认添加" />
                 </div>
         </form>
     </div>
 
 
-    <table style="margin-top: 230px;color:#1e704d " align="center" width="800" border="0.8" bgcolor="#1e704d" cellpadding="1" cellspacing="1" >
+    <table style="margin-top: 250px;color:#1e704d " align="center" width="800" border="0.8" bgcolor="#1e704d" cellpadding="1" cellspacing="1" >
         <tr align="center" bgcolor="#d5f1e5" height="40">
             <td>作业编号</td>
             <td>作业标题</td>
@@ -33,17 +34,17 @@
             <td>创建时间</td>
         </tr>
         <%
-            List<StudentHomework> list = StudentHomeworkJdbc.selectHomework();
+            List<Homework> list = StudentHomeworkJdbc.selectHomework();
 
             if(null == list || list.size() <= 0){
                 out.print("None data.");
             }else {
-                for (StudentHomework sh : list){
+                for (Homework sh : list){
         %>
         <tr align="center" bgcolor="white" height="30">
-            <td><%=sh.getHomeworkId()%></td>
-            <td><%=sh.getHomeworkTitle()%></td>
-            <td><%=sh.getHomeworkContent()%></td>
+            <td><%=sh.getId()%></td>
+            <td><%=sh.getTitle()%></td>
+            <td><%=sh.getContent()%></td>
             <td><%=sh.getCreateTime()%></td>
         </tr>
         <%
@@ -64,11 +65,11 @@
 
     #frame {
         width: 800px;
-        height: 200px;
+        height: 150px;
         position: absolute;
         padding-top: 13px;
         left: 50%;
-        top: 40%;
+        top: 35%;
         margin-left: -400px;
         margin-top: -100px;
         background-color: rgba(240, 255, 255, 0.5);

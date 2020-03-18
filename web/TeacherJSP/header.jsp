@@ -7,25 +7,45 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="nav" >
-    <ul>
-        <li><a href="/TeacherJSP/readHomework.jsp">查看作业</a></li>
+    <ul class="list">
+        <li style="margin-left: 300px"><a   href="/TeacherJSP/readHomework.jsp">查看作业</a></li>
         <li><a href="/TeacherJSP/addHomework.jsp">添加作业</a></li>
         <li><a href="/TeacherJSP/addStudent.jsp">添加学生</a></li>
         <li><a href="../index.jsp">返回首页</a></li>
     </ul>
 </div>
 <style>
-    #nav>ul>li{
-        float:left;
-        margin-left:50px;
-
-    }
     #nav{
-        font-size: 20px;
-        font-family: 宋体;
-        padding-top: 30px;
-        color: #1e704d;
-        height: 100px;
-        margin-left:360px;
+        margin: 0 auto;
+        padding: 0 ;
+        box-shadow: 0 0 10px 4px rgba(213,241,229,0.1);
+        background-color: rgba(213,241,229,0.4);
+        font-size: 28px;
     }
+
+    .list a {
+        text-decoration: none;
+        color: #1e704d;
+    }
+    li {
+        list-style: none;
+        height: 60px;
+        line-height: 60px;
+    }
+    #nav .list{
+        display: flex;
+    }
+    #nav .list li {
+        padding: 0 20px;
+        cursor: pointer;
+    }
+    #nav .list li:hover {
+        background-color: #1e704d;
+        transition: all 2s ease;
+    }
+    #nav .list li:hover a {
+        color: #fff;
+    }
+
+
 </style>

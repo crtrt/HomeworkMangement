@@ -24,9 +24,6 @@ public class StudentHomeworkServlet extends HttpServlet {
         req.setAttribute("list", list);
         //把req、resp转发给jsp
         req.getRequestDispatcher("/TeacherJSP/readHomework.jsp").forward(req, resp);
-
-
     }
-
 
 }

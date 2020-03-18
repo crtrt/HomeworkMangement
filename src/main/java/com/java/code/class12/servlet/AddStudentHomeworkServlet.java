@@ -1,6 +1,7 @@
 package com.java.code.class12.servlet;
 
 import com.java.code.class12.jdbc.StudentHomeworkJdbc;
+import com.java.code.class12.model.Homework;
 import com.java.code.class12.model.StudentHomework;
 
 import javax.servlet.ServletException;
@@ -19,14 +20,14 @@ public class AddStudentHomeworkServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        StudentHomework sh = new StudentHomework();
+        Homework sh = new Homework();
         //获取当前时间
         Timestamp now = new Timestamp(new Date().getTime());
         /**
          * 赋值
          */
-        sh.setHomeworkTitle(req.getParameter("title"));
-        sh.setHomeworkContent(req.getParameter("content"));
+        sh.setTitle(req.getParameter("title"));
+        sh.setContent(req.getParameter("content"));
         sh.setCreateTime(now);
         StudentHomeworkJdbc.addStudentHomework(sh);
         PrintWriter out = resp.getWriter();

@@ -24,6 +24,7 @@
             <td>作业标题</td>
             <td>作业内容</td>
             <td>创建时间</td>
+            <td>修改时间</td>
         </tr>
         <%
             List<StudentHomework> list = StudentHomeworkJdbc.selectAll();
@@ -41,6 +42,8 @@
             <td><%=sh.getHomeworkTitle()%></td>
             <td><%=sh.getHomeworkContent()%></td>
             <td><%=sh.getCreateTime()%></td>
+            <td><%=sh.getUpdateTime()%></td>
+
         </tr>
         <%
                 }

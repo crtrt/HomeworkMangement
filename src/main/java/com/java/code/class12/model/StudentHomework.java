@@ -8,8 +8,6 @@ public class StudentHomework {
 
     private Long studentId;
 
-    private String stuName;
-
     private Long homeworkId;
 
     private String homeworkTitle;
@@ -76,11 +74,4 @@ public class StudentHomework {
         this.updateTime = updateTime;
     }
 
-    public String getStuName() {
-        return stuName;
-    }
-
-    public void setStuName(String stuName) {
-        this.stuName = stuName;
-    }
 }
