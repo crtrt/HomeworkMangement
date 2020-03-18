@@ -1,6 +1,8 @@
 <%@ page import="com.java.code.class12.model.StudentHomework" %>
 <%@ page import="com.java.code.class12.jdbc.StudentHomeworkJdbc" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.java.code.class12.model.Homework" %>
+<%@ page import="com.java.code.class12.model.Student" %><%--
   Created by IntelliJ IDEA.
   User: enovo
   Date: 2020/3/8
@@ -21,16 +23,16 @@
 <%--    <form action="../SubmitHomeworkServlet" method="post" >--%>
         <form name="form1" action="" method="post" >
        <%
-           List<StudentHomework> homeworklist = StudentHomeworkJdbc.selectHomework();
-           List<StudentHomework> studentlist = StudentHomeworkJdbc.selectStudent();
+           List<Homework> homeworklist = StudentHomeworkJdbc.selectHomework();
+           List<Student> studentlist = StudentHomeworkJdbc.selectStudent();
        %>
 
         <p><label style="margin-top: 20px" class="label_input">个人信息</label>
             <select id="student_id" name="student_id" style="margin-top: 20px" class="select">
                 <%
-                    for (StudentHomework sh : studentlist){
+                    for (Student sh : studentlist){
                 %>
-                <option value="<%=sh.getId()%>">学号:<%=sh.getId()%>        姓名:<%=sh.getStuName()%></option>
+                <option value="<%=sh.getId()%>">学号:<%=sh.getId()%>        姓名:<%=sh.getName()%></option>
                 <%
                     }
                 %>
@@ -39,9 +41,9 @@
         <p><label style="margin-top: 20px" class="label_input">选择作业</label>
             <select  name="homework_id" style="margin-top: 20px" class="select">
                 <%
-                     for (StudentHomework sh : homeworklist){
+                     for (Homework sh : homeworklist){
                  %>
-                <option value="<%=sh.getHomeworkId()%>">作业<%=sh.getHomeworkId()%>       题目:<%=sh.getHomeworkTitle()%>       内容:<%=sh.getHomeworkContent()%></option>
+                <option value="<%=sh.getId()%>">作业<%=sh.getId()%>       题目:<%=sh.getTitle()%>       内容:<%=sh.getContent()%></option>
                 <%
                     }
                 %>

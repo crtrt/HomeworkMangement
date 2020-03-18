@@ -20,7 +20,7 @@
         padding: 0 ;
         box-shadow: 0 0 10px 4px rgba(213,241,229,0.1);
         background-color: rgba(213,241,229,0.4);
-        font-size: 28px;
+        font-size: 20px;
     }
 
     .list a {

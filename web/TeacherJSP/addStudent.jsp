@@ -65,7 +65,7 @@
 
     #frame {
         width: 800px;
-        height: 150px;
+        height: 200px;
         position: absolute;
         padding-top: 13px;
         left: 50%;

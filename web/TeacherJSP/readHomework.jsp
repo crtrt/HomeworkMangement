@@ -25,6 +25,8 @@
             <td>作业内容</td>
             <td>创建时间</td>
             <td>修改时间</td>
+            <td>总分</td>
+
         </tr>
         <%
             List<StudentHomework> list = StudentHomeworkJdbc.selectAll();
@@ -43,6 +45,8 @@
             <td><%=sh.getHomeworkContent()%></td>
             <td><%=sh.getCreateTime()%></td>
             <td><%=sh.getUpdateTime()%></td>
+            <td><%=sh.getTotal_score()%></td>
+
 
         </tr>
         <%
@@ -52,6 +56,7 @@
     </table>
 </body>
 </html>
+
 <style>
     body {
         background-image: url("../images/5.jpg");;

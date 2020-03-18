@@ -32,6 +32,7 @@
             <td>作业标题</td>
             <td>作业内容</td>
             <td>创建时间</td>
+            <td>总分</td>
         </tr>
         <%
             List<Homework> list = StudentHomeworkJdbc.selectHomework();
@@ -46,6 +47,7 @@
             <td><%=sh.getTitle()%></td>
             <td><%=sh.getContent()%></td>
             <td><%=sh.getCreateTime()%></td>
+            <td><%=sh.getTotal_score()%></td>
         </tr>
         <%
                 }
@@ -65,7 +67,7 @@
 
     #frame {
         width: 800px;
-        height: 150px;
+        height: 200px;
         position: absolute;
         padding-top: 13px;
         left: 50%;
