@@ -1,0 +1,6 @@
+.idea
+*.iml
+target
+output
+out
+src/main/webapp/WEB-INF/classes
