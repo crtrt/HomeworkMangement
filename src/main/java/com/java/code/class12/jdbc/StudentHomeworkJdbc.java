@@ -63,6 +63,7 @@ public class StudentHomeworkJdbc {
                         sh.setHomeworkContent(resultSet.getString("homework_content"));
                         sh.setCreateTime(resultSet.getTimestamp("create_time"));
                         sh.setUpdateTime(resultSet.getTimestamp("update_time"));
+                        sh.setTotal_score(resultSet.getString("total_score"));
                         list.add(sh);
                     }
                 }
@@ -74,41 +75,19 @@ public class StudentHomeworkJdbc {
         return list;
     }
     /*
-    添加作业Homework
-     */
-    public static String addStudentHomework(Homework hw){
-
-        String sqlString = "INSERT INTO s_homework(id,title,content,create_time) VALUES (null,'" + hw.getTitle() + "','" + hw.getContent() + "','" + hw.getCreateTime()+ "')";
-        connectUpdate(sqlString);
-        return "添加成功";
-    }
-    /*
-       添加学生Student
-   */
-    public static String addStudent(Student sh){
-
-        String sqlString = "INSERT INTO s_student(id,name,create_time) VALUES ('" + sh.getId() + "','" + sh.getName() + "','" + sh.getCreateTime()+ "')";
-        connectUpdate(sqlString);
-        return "添加成功";
-    }
-    /*
-     提交作业StudentHomework
-    */
-    public static String submitHomework(StudentHomework sh) {
-
-        String sqlString = "INSERT INTO s_student_homework(id,student_id,homework_id,homework_title,homework_content,create_time) VALUES" +
-                "(null,'" + sh.getStudentId() + "','" + sh.getHomeworkId() + "','"
-                + sh.getHomeworkTitle() + "','" + sh.getHomeworkContent() + "','" + sh.getCreateTime() + "')";
-        connectUpdate(sqlString);
-        return "提交成功";
-    }
-    /*
       查看老师布置的的作业Homework
        */
     public static List<Homework> selectHomework(){
         String url = "jdbc:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
 
         String driverName = "com.mysql.cj.jdbc.Driver";
+        try {
+            // 加载驱动
+            Class.forName(driverName);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         String sqlString = "SELECT * FROM s_homework";
 
@@ -145,6 +124,13 @@ public class StudentHomeworkJdbc {
         String url = "jdbc:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
 
         String driverName = "com.mysql.cj.jdbc.Driver";
+        try {
+            // 加载驱动
+            Class.forName(driverName);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         List<Student> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url, "root", "123456")) {
@@ -206,7 +192,35 @@ public class StudentHomeworkJdbc {
 
         return list;
     }
+    /*
+     添加作业Homework
+      */
+    public static String addStudentHomework(Homework hw){
 
+        String sqlString = "INSERT INTO s_homework(id,title,content,create_time) VALUES (null,'" + hw.getTitle() + "','" + hw.getContent() + "','" + hw.getCreateTime()+ "')";
+        connectUpdate(sqlString);
+        return "添加成功";
+    }
+    /*
+       添加学生Student
+   */
+    public static String addStudent(Student sh){
+
+        String sqlString = "INSERT INTO s_student(id,name,create_time) VALUES ('" + sh.getId() + "','" + sh.getName() + "','" + sh.getCreateTime()+ "')";
+        connectUpdate(sqlString);
+        return "添加成功";
+    }
+    /*
+     提交作业StudentHomework
+    */
+    public static String submitHomework(StudentHomework sh) {
+
+        String sqlString = "INSERT INTO s_student_homework(id,student_id,homework_id,homework_title,homework_content,create_time) VALUES" +
+                "(null,'" + sh.getStudentId() + "','" + sh.getHomeworkId() + "','"
+                + sh.getHomeworkTitle() + "','" + sh.getHomeworkContent() + "','" + sh.getCreateTime() + "')";
+        connectUpdate(sqlString);
+        return "提交成功";
+    }
     /*
     删除自己的作业Homework
      */
@@ -224,4 +238,5 @@ public class StudentHomeworkJdbc {
         connectUpdate(sqlString);
         return "修改成功";
     }
+
 }
